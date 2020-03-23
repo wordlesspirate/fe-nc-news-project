@@ -2,14 +2,14 @@ import React from "react";
 import "./App.css";
 import Title from "./components/Title";
 import TopicsList from "./components/TopicsList";
+import ArticlesList from "./components/ArticlesList";
 
 function App() {
   return (
     <div className="App">
-      <h1>
-        <Title />
-      </h1>
+      <Title />
       <TopicsList />
+      <ArticlesList />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Title = () => {
-  return <div className="header">Title goes here.</div>;
+  return <div className="header">Northcoders News</div>;
 };
 
 export default Title;
