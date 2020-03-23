@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  display: grid;
+  grid-template-areas: "header header" "nav nav" "main main";
+  grid-template-columns: 100 px auto;
+  grid-template-rows: 100 px auto;
+}
+
+.header {
+  grid-area: header;
+  border: 1px solid black;
+}
+
+.nav {
+  grid-area: nav;
+  border: 1px solid black;
+}
+
+.main {
+  grid-area: main;
+  border: 1px solid black;
+}
