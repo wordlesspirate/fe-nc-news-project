@@ -29,14 +29,8 @@ class ArticlesList extends Component {
     if (this.state.isLoading) return <Loading />;
     return (
       <main>
-        {this.state.articles.map(({ article_id, title, topic }) => {
-          return (
-            <ArticleCard
-              key={article_id}
-              title={<p className="card-content">{title}</p>}
-              topic={<p className="card-content">{topic}</p>}
-            />
-          );
+        {this.state.articles.map(props => {
+          return <ArticleCard key={props.article_id} {...props} />;
         })}
       </main>
     );

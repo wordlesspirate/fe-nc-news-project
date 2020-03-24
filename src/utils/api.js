@@ -19,4 +19,13 @@ const fetchArticles = slug => {
     });
 };
 
-module.exports = { fetchTopics, fetchArticles };
+const fetchArticleById = article_id => {
+  return axios
+    .get(`https://be-nc-news-project.herokuapp.com/api/articles/${article_id}`)
+    .then(({ data: { article } }) => {
+      console.log("axios, article by id --->", article);
+      return article;
+    });
+};
+
+module.exports = { fetchTopics, fetchArticles, fetchArticleById };
