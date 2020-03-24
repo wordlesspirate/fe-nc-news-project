@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Loading from "./Loading";
 import * as api from "../utils/api.js";
+import Voting from "./Voting";
+import CommentsList from "./CommentsList";
 
 class ArticleDetail extends Component {
   state = {
@@ -22,15 +24,32 @@ class ArticleDetail extends Component {
     }
   }
 
+  changeVoteBy = value => {
+    api.patchArticleVotes(this.props.article_id, value).then(({ votes }) => {
+      this.setState(({ article }) => {
+        return { article: { ...article, votes } };
+      });
+    });
+  };
+
+  upvote = () => {
+    this.changeVoteBy(1);
+  };
+
+  downvote = () => {
+    this.changeVoteBy(-1);
+  };
+
   render() {
     if (this.state.isLoading) return <Loading />;
     const {
+      article_id,
       title,
       body,
       author,
       created_at,
       votes,
-      comments
+      comment_count
     } = this.state.article;
     return (
       <div className="card-content">
@@ -38,8 +57,15 @@ class ArticleDetail extends Component {
         <p>{body}</p>
         <p>{author}</p>
         <p>{created_at}</p>
-        <p>{votes}</p>
-        <p>{comments}</p>
+        <p>Comments: {comment_count}</p>
+
+        <Voting
+          count={votes}
+          onUpvote={this.upvote}
+          onDownvote={this.downvote}
+        />
+
+        <CommentsList article_id={article_id} />
       </div>
     );
   }

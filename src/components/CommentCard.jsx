@@ -1,22 +1,49 @@
-import React from "react";
+import React, { Component } from "react";
 import Voting from "./Voting";
+import { patchCommentVotes } from "../utils/api";
 
-const CommentCard = ({ comment_id, author, body, votes, created_at }) => {
-  return (
-    <article className="card-container">
-      <div className="card-content">
-        <p>{body}</p>
+class CommentCard extends Component {
+  state = {
+    internalVotes: 0
+  };
 
-        <p>{author}</p>
+  changeVoteBy = value => {
+    patchCommentVotes(this.props.comment_id, value).then(comment => {
+      this.setState(currentState => {
+        this.setState({ internalVotes: currentState.internalVotes + value });
+      });
+    });
+  };
 
-        <p>{votes}</p>
+  upvote = () => {
+    this.changeVoteBy(1);
+  };
 
-        <p>Posted: {created_at}</p>
+  downvote = () => {
+    this.changeVoteBy(-1);
+  };
 
-        <Voting voteUrl={`/comments/${comment_id}`} />
-      </div>
-    </article>
-  );
-};
+  render() {
+    const { votes, body, author, created_at } = this.props;
+
+    return (
+      <article className="card-container">
+        <div className="card-content">
+          <p>{body}</p>
+
+          <p>{author}</p>
+
+          <p>Posted: {created_at}</p>
+
+          <Voting
+            count={votes + this.state.internalVotes}
+            onUpvote={this.upvote}
+            onDownvote={this.downvote}
+          />
+        </div>
+      </article>
+    );
+  }
+}
 
 export default CommentCard;

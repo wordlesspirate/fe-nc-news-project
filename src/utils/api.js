@@ -1,16 +1,18 @@
 const axios = require("axios");
 
+const httpClient = axios.create({
+  baseURL: "https://be-nc-news-project.herokuapp.com/api"
+});
+
 const fetchTopics = () => {
-  return axios
-    .get("https://be-nc-news-project.herokuapp.com/api/topics")
-    .then(({ data: { topics } }) => {
-      return topics;
-    });
+  return httpClient.get("/topics").then(({ data: { topics } }) => {
+    return topics;
+  });
 };
 
 const fetchArticles = slug => {
-  return axios
-    .get("https://be-nc-news-project.herokuapp.com/api/articles", {
+  return httpClient
+    .get("/articles", {
       params: { topic: slug }
     })
     .then(({ data: { articles } }) => {
@@ -19,22 +21,34 @@ const fetchArticles = slug => {
 };
 
 const fetchArticleById = article_id => {
-  return axios
-    .get(`https://be-nc-news-project.herokuapp.com/api/articles/${article_id}`)
+  return httpClient
+    .get(`/articles/${article_id}`)
     .then(({ data: { article } }) => {
-      console.log("axios, article by id --->", article);
       return article;
     });
 };
 
 const fetchArticleComments = article_id => {
-  return axios
-    .get(
-      `https://be-nc-news-project.herokuapp.com/api/articles/${article_id}/comments`
-    )
+  return httpClient
+    .get(`/articles/${article_id}/comments`)
     .then(({ data: { comments } }) => {
-      console.log("axios, comments by id --->", comments);
       return comments;
+    });
+};
+
+const patchArticleVotes = (article_id, vote) => {
+  return httpClient
+    .patch(`/articles/${article_id}`, { inc_votes: vote })
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};
+
+const patchCommentVotes = (comment_id, vote) => {
+  return httpClient
+    .patch(`/comments/${comment_id}`, { inc_votes: vote })
+    .then(({ data: { comment } }) => {
+      return comment;
     });
 };
 
@@ -42,5 +56,7 @@ module.exports = {
   fetchTopics,
   fetchArticles,
   fetchArticleById,
-  fetchArticleComments
+  fetchArticleComments,
+  patchArticleVotes,
+  patchCommentVotes
 };
