@@ -4,7 +4,6 @@ const fetchTopics = () => {
   return axios
     .get("https://be-nc-news-project.herokuapp.com/api/topics")
     .then(({ data: { topics } }) => {
-      console.log(topics);
       return topics;
     });
 };
@@ -28,4 +27,20 @@ const fetchArticleById = article_id => {
     });
 };
 
-module.exports = { fetchTopics, fetchArticles, fetchArticleById };
+const fetchArticleComments = article_id => {
+  return axios
+    .get(
+      `https://be-nc-news-project.herokuapp.com/api/articles/${article_id}/comments`
+    )
+    .then(({ data: { comments } }) => {
+      console.log("axios, comments by id --->", comments);
+      return comments;
+    });
+};
+
+module.exports = {
+  fetchTopics,
+  fetchArticles,
+  fetchArticleById,
+  fetchArticleComments
+};
