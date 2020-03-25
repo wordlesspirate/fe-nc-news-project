@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Loading from "./Loading";
 import * as api from "../utils/api.js";
 import ArticleCard from "./ArticleCard";
+import Sorter from "./Sorter";
 
 class ArticlesList extends Component {
   state = {
@@ -29,6 +30,7 @@ class ArticlesList extends Component {
     if (this.state.isLoading) return <Loading />;
     return (
       <main>
+        <Sorter />
         {this.state.articles.map(props => {
           return <ArticleCard key={props.article_id} {...props} />;
         })}

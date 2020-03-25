@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
 import Title from "./components/Header";
