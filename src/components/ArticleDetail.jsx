@@ -16,14 +16,6 @@ class ArticleDetail extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.article_id !== this.props.article_id) {
-      api.fetchArticleById(this.props.article_id).then(article => {
-        this.setState({ article, isLoading: false });
-      });
-    }
-  }
-
   changeVoteBy = value => {
     api.patchArticleVotes(this.props.article_id, value).then(({ votes }) => {
       this.setState(({ article }) => {
@@ -38,6 +30,14 @@ class ArticleDetail extends Component {
 
   downvote = () => {
     this.changeVoteBy(-1);
+  };
+
+  onCommentCountChange = count => {
+    this.setState(({ article }) => {
+      article.comment_count = count;
+
+      return { article };
+    });
   };
 
   render() {
@@ -64,7 +64,12 @@ class ArticleDetail extends Component {
           onUpvote={this.upvote}
           onDownvote={this.downvote}
         />
-        <CommentsList article_id={article_id} />
+
+        <CommentsList
+          article_id={article_id}
+          username={this.props.username}
+          onComment={this.onCommentCountChange}
+        />
       </div>
     );
   }

@@ -52,11 +52,23 @@ const patchCommentVotes = (comment_id, vote) => {
     });
 };
 
+const postArticleComment = (article_id, username, comment) => {
+  return httpClient
+    .post(`/articles/${article_id}/comments`, {
+      username: username,
+      body: comment
+    })
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};
+
 module.exports = {
   fetchTopics,
   fetchArticles,
   fetchArticleById,
   fetchArticleComments,
   patchArticleVotes,
-  patchCommentVotes
+  patchCommentVotes,
+  postArticleComment
 };

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loading from "./Loading";
 import CommentCard from "./CommentCard";
+import CommentAdder from "./CommentAdder";
 
 class CommentsList extends Component {
   state = {
@@ -13,15 +14,25 @@ class CommentsList extends Component {
     this.getComments();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.article_id !== prevProps.article_id) {
-      this.getComments(this.props.article_id);
-    }
-  }
-
   getComments = () => {
     api.fetchArticleComments(this.props.article_id).then(comments => {
       this.setState({ comments, isLoading: false });
+    });
+  };
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  handleComment = comment => {
+    const { article_id, username } = this.props;
+
+    api.postArticleComment(article_id, username, comment).then(comment => {
+      this.setState(prevState => {
+        return {
+          comments: [comment, ...prevState.comments]
+        };
+      }, this.props.onComment(this.state.comments.length));
     });
   };
 
@@ -30,6 +41,8 @@ class CommentsList extends Component {
     return (
       <main>
         <h2>Comments</h2>
+        <CommentAdder onSubmit={this.handleComment} />
+
         {this.state.comments.map(({ comment_id, ...other }) => {
           return (
             <CommentCard key={comment_id} comment_id={comment_id} {...other} />
