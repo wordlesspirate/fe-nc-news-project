@@ -10,10 +10,10 @@ const fetchTopics = () => {
   });
 };
 
-const fetchArticles = slug => {
+const fetchArticles = (slug, query) => {
   return httpClient
     .get("/articles", {
-      params: { topic: slug }
+      params: { topic: slug, ...query }
     })
     .then(({ data: { articles } }) => {
       return articles;

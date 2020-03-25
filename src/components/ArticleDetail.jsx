@@ -64,7 +64,6 @@ class ArticleDetail extends Component {
           onUpvote={this.upvote}
           onDownvote={this.downvote}
         />
-
         <CommentsList article_id={article_id} />
       </div>
     );
