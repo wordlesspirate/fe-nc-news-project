@@ -63,6 +63,10 @@ const postArticleComment = (article_id, username, comment) => {
     });
 };
 
+const deleteComment = comment_id => {
+  return httpClient.delete(`/comments/${comment_id}`);
+};
+
 module.exports = {
   fetchTopics,
   fetchArticles,
@@ -70,5 +74,6 @@ module.exports = {
   fetchArticleComments,
   patchArticleVotes,
   patchCommentVotes,
-  postArticleComment
+  postArticleComment,
+  deleteComment
 };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Voting from "./Voting";
-import { patchCommentVotes } from "../utils/api";
+import { patchCommentVotes, deleteComment } from "../utils/api";
 
 class CommentCard extends Component {
   state = {
@@ -23,8 +23,15 @@ class CommentCard extends Component {
     this.changeVoteBy(-1);
   };
 
+  handleDelete = event => {
+    deleteComment(event.target.id);
+    this.setState(currentState => {
+      return { comments: currentState.comments };
+    });
+  };
+
   render() {
-    const { votes, body, author, created_at } = this.props;
+    const { votes, body, author, created_at, comment_id } = this.props;
 
     return (
       <article className="card-container">
@@ -40,6 +47,17 @@ class CommentCard extends Component {
             onUpvote={this.upvote}
             onDownvote={this.downvote}
           />
+
+          <p>
+            <button
+              onClick={this.handleDelete}
+              id={comment_id}
+              author={author}
+              disabled={this.props.username !== author}
+            >
+              Delete comment
+            </button>
+          </p>
         </div>
       </article>
     );
