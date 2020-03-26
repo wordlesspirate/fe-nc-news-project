@@ -3,17 +3,26 @@ import Loading from "./Loading";
 import * as api from "../utils/api.js";
 import Voting from "./Voting";
 import CommentsList from "./CommentsList";
+import ErrorHandler from "./ErrorHandler";
 
 class ArticleDetail extends Component {
   state = {
     article: {},
-    isLoading: true
+    isLoading: true,
+    error: false
   };
 
   componentDidMount() {
-    api.fetchArticleById(this.props.article_id).then(article => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .fetchArticleById(this.props.article_id)
+      .then(article => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch(error => {
+        const status = error.response.status;
+        const errorMessage = error.response.data.msg;
+        this.setState({ error: { status, errorMessage }, isLoading: false });
+      });
   }
 
   changeVoteBy = value => {
@@ -42,6 +51,7 @@ class ArticleDetail extends Component {
 
   render() {
     if (this.state.isLoading) return <Loading />;
+    if (this.state.error) return <ErrorHandler {...this.state.error} />;
     const {
       article_id,
       title,
