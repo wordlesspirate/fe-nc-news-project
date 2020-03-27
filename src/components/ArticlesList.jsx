@@ -3,6 +3,7 @@ import Loading from "./Loading";
 import * as api from "../utils/api.js";
 import ArticleCard from "./ArticleCard";
 import Dropdown from "./Dropdown";
+import ErrorHandler from "./ErrorHandler";
 
 const sortByOptions = [
   {
@@ -35,11 +36,18 @@ class ArticlesList extends Component {
     articles: [],
     isLoading: true,
     sort_by: "created_at",
-    order: "desc"
+    order: "desc",
+    error: false
   };
 
   componentDidMount() {
     this.getArticles();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.slug !== prevProps.slug) {
+      this.getArticles();
+    }
   }
 
   getArticles = query => {
@@ -51,6 +59,12 @@ class ArticlesList extends Component {
       })
       .then(articles => {
         this.setState({ articles, ...query, isLoading: false });
+      })
+      .catch(error => {
+        console.dir(error);
+        const status = error.response.status;
+        const errorMessage = error.response.data.msg;
+        this.setState({ error: { status, errorMessage }, isLoading: false });
       });
   };
 
@@ -64,6 +78,7 @@ class ArticlesList extends Component {
 
   render() {
     if (this.state.isLoading) return <Loading />;
+    if (this.state.error) return <ErrorHandler {...this.state.error} />;
     return (
       <main>
         <Dropdown options={sortByOptions} onChange={this.handleSortOptions} />

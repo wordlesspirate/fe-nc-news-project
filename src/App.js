@@ -18,7 +18,7 @@ class App extends React.Component {
         <NavBar />
         <Router className="main">
           <ArticlesList path="/" />
-          <ArticlesList path="/topics/:slug/articles" />
+          <ArticlesList path="/topics/:slug" />
           <ArticleDetail
             username={this.state.username}
             path="/articles/:article_id"

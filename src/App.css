@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-areas: "header header" "nav main";
+  grid-template-areas: "header header" "nav nav" "main main";
   grid-template-columns: 100px auto;
   grid-template-rows: 100px auto;
   padding: 20px 20px 20px 20px;
@@ -10,12 +10,12 @@
 
 .header {
   grid-area: header;
-  border: 1px solid black;
+  border: 1px solid grey;
   grid-column-gap: 50px;
 }
 
 .logo-container {
-  border: 1px solid red;
+  border: 1px solid grey;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -30,14 +30,14 @@
 .nav {
   grid-area: nav;
   display: flex;
-  flex-direction: column;
-  border: 1px solid black;
+  flex-direction: row;
+  border: 1px solid grey;
   grid-column-gap: 50px;
   text-align: left;
 }
 
 .nav-elements {
-  border: 1px solid red;
+  border: 1px solid grey;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -45,22 +45,28 @@
 }
 
 .nav-elements:hover {
-  transform: scale(1.2);
+  transform: scale(1.015);
 }
 
 .main {
   grid-area: main;
-  border: 1px solid black;
+  border: 1px solid grey;
   grid-column-gap: 50px;
   text-align: left;
 }
 
 .card-container {
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  background-color: blanchedalmond;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 25px;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+  transform: translateZ(0);
   transition: transform 0.25s ease-out;
 }
 
@@ -69,13 +75,27 @@
 }
 
 .card-content {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  background-color: plum;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 25px;
+  cursor: pointer;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
 }
 
 a {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  [class*="col-"] {
+    width: 100%;
+  }
 }

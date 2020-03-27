@@ -4,6 +4,7 @@ import * as api from "../utils/api.js";
 import Voting from "./Voting";
 import CommentsList from "./CommentsList";
 import ErrorHandler from "./ErrorHandler";
+import CommentToggler from "./CommentToggler";
 
 class ArticleDetail extends Component {
   state = {
@@ -74,12 +75,13 @@ class ArticleDetail extends Component {
           onUpvote={this.upvote}
           onDownvote={this.downvote}
         />
-
-        <CommentsList
-          article_id={article_id}
-          username={this.props.username}
-          onComment={this.onCommentCountChange}
-        />
+        <CommentToggler>
+          <CommentsList
+            article_id={article_id}
+            username={this.props.username}
+            onComment={this.onCommentCountChange}
+          />
+        </CommentToggler>
       </div>
     );
   }
