@@ -5,6 +5,7 @@ import Title from "./components/Title";
 import NavBar from "./components/NavBar";
 import ArticlesList from "./components/ArticlesList";
 import ArticleDetail from "./components/ArticleDetail";
+import NotFound from "./components/NotFound";
 
 class App extends React.Component {
   state = {
@@ -23,6 +24,7 @@ class App extends React.Component {
             username={this.state.username}
             path="/articles/:article_id"
           />
+          <NotFound default />
         </Router>
       </div>
     );
