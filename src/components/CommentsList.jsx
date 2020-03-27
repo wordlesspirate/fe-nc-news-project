@@ -24,7 +24,7 @@ class CommentsList extends Component {
     return true;
   }
 
-  handleComment = comment => {
+  handleCommentAdd = comment => {
     const { article_id, username } = this.props;
 
     api.postArticleComment(article_id, username, comment).then(comment => {
@@ -36,12 +36,26 @@ class CommentsList extends Component {
     });
   };
 
+  handleCommentDelete = event => {
+    const id = Number(event.target.id);
+
+    api.deleteComment(id).then(
+      this.setState(prevState => {
+        return {
+          comments: prevState.comments.filter(
+            comment => comment.comment_id !== id
+          )
+        };
+      })
+    );
+  };
+
   render() {
     if (this.state.isLoading) return <Loading />;
     return (
       <main>
         <h2>Comments</h2>
-        <CommentAdder onSubmit={this.handleComment} />
+        <CommentAdder onSubmit={this.handleCommentAdd} />
 
         {this.state.comments.map(({ comment_id, ...other }) => {
           return (
@@ -50,6 +64,7 @@ class CommentsList extends Component {
               comment_id={comment_id}
               {...other}
               username={this.props.username}
+              onDelete={this.handleCommentDelete}
             />
           );
         })}

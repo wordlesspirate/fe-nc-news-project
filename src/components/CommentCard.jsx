@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Voting from "./Voting";
-import { patchCommentVotes, deleteComment } from "../utils/api";
+import { patchCommentVotes } from "../utils/api";
 
 class CommentCard extends Component {
   state = {
@@ -10,7 +10,7 @@ class CommentCard extends Component {
   changeVoteBy = value => {
     patchCommentVotes(this.props.comment_id, value).then(comment => {
       this.setState(currentState => {
-        this.setState({ internalVotes: currentState.internalVotes + value });
+        return { internalVotes: currentState.internalVotes + value };
       });
     });
   };
@@ -21,13 +21,6 @@ class CommentCard extends Component {
 
   downvote = () => {
     this.changeVoteBy(-1);
-  };
-
-  handleDelete = event => {
-    deleteComment(event.target.id);
-    this.setState(currentState => {
-      return { comments: currentState.comments };
-    });
   };
 
   render() {
@@ -50,7 +43,7 @@ class CommentCard extends Component {
 
           <p>
             <button
-              onClick={this.handleDelete}
+              onClick={this.props.onDelete}
               id={comment_id}
               author={author}
               disabled={this.props.username !== author}
