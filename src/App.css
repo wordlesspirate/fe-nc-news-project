@@ -58,7 +58,6 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  background-color: blanchedalmond;
   border: 1px solid grey;
   border-radius: 5px;
   padding: 25px;
@@ -77,7 +76,6 @@
 .card-content {
   display: flex;
   flex-direction: row;
-  background-color: plum;
   border: 1px solid grey;
   border-radius: 5px;
   padding: 25px;

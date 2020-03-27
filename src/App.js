@@ -1,7 +1,7 @@
 import React from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import Title from "./components/Title";
+import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import ArticlesList from "./components/ArticlesList";
 import ArticleDetail from "./components/ArticleDetail";
@@ -15,7 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Title username={this.state.username} />
+        <Header username={this.state.username} />
         <NavBar />
         <Router className="main">
           <ArticlesList path="/" />

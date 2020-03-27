@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const Title = ({ username }) => {
+const Header = ({ username }) => {
   return (
     <div className="header">
       <Link to="/">
@@ -13,4 +13,4 @@ const Title = ({ username }) => {
   );
 };
 
-export default Title;
+export default Header;
