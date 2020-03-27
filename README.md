@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Northcoders News
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The hosted version is avaliable [here](). The backend repository is available [here](https://github.com/wordlesspirate/be-nc-news-project) and its hosted version [here](https://be-nc-news-project.herokuapp.com/).
 
 ## Available Scripts
 
