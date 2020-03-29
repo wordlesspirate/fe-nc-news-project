@@ -3,13 +3,17 @@ import { Link } from "@reach/router";
 
 const Header = ({ username }) => {
   return (
-    <div className="header">
-      <Link to="/">
-        <h1 className="logo-container">Northcoders News</h1>
-      </Link>
+    <header className="container">
+      <section className="hero is-info">
+        <div className="hero-body">
+          <Link to="/">
+            <h1 className="title">Northcoders News</h1>
+          </Link>
 
-      <p>Logged username: {username}</p>
-    </div>
+          <h2 className="subtitle">account: {username}</h2>
+        </div>
+      </section>
+    </header>
   );
 };
 

@@ -15,15 +15,21 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="nav">
-        {this.state.topics.map(({ slug }) => {
-          return (
-            <Link to={`/topics/${slug}`} key={slug}>
-              <p className="nav-elements">{slug}</p>
-            </Link>
-          );
-        })}
-      </nav>
+      <div className="container">
+        <nav className="navbar is-light">
+          <div className="navbar-start">
+            {this.state.topics.map(({ slug }) => {
+              return (
+                <div className="navbar-item">
+                  <Link to={`/topics/${slug}`} key={slug}>
+                    {slug}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </nav>
+      </div>
     );
   }
 }

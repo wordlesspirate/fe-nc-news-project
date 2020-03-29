@@ -80,13 +80,21 @@ class ArticlesList extends Component {
     if (this.state.isLoading) return <Loading />;
     if (this.state.error) return <ErrorHandler {...this.state.error} />;
     return (
-      <main>
+      <main className="container">
         <Dropdown options={sortByOptions} onChange={this.handleSortOptions} />
         <Dropdown options={sortOrder} onChange={this.handleSortOrder} />
 
-        {this.state.articles.map(props => {
-          return <ArticleCard key={props.article_id} {...props} />;
-        })}
+        <div class="card news">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                {this.state.articles.map(props => {
+                  return <ArticleCard key={props.article_id} {...props} />;
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     );
   }

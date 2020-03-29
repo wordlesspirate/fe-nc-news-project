@@ -5,6 +5,7 @@ import Voting from "./Voting";
 import CommentsList from "./CommentsList";
 import ErrorHandler from "./ErrorHandler";
 import CommentToggler from "./CommentToggler";
+import CommentAdder from "./CommentAdder";
 
 class ArticleDetail extends Component {
   state = {
@@ -63,25 +64,38 @@ class ArticleDetail extends Component {
       comment_count
     } = this.state.article;
     return (
-      <div className="card-content">
-        <p>{title}</p>
-        <p>{body}</p>
-        <p>{author}</p>
-        <p>{created_at}</p>
-        <p>Comments: {comment_count}</p>
+      <div className="container">
+        <div className="card news">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-content">
+                <div className="content article-body">
+                  <p className="title article-title">{title}</p>
+                  <p>{body}</p>
+                  <p>{author}</p>
+                  <p>{created_at}</p>
+                  <p>Comments: {comment_count}</p>
 
-        <Voting
-          count={votes}
-          onUpvote={this.upvote}
-          onDownvote={this.downvote}
-        />
-        <CommentToggler>
-          <CommentsList
-            article_id={article_id}
-            username={this.props.username}
-            onComment={this.onCommentCountChange}
-          />
-        </CommentToggler>
+                  <Voting
+                    count={votes}
+                    onUpvote={this.upvote}
+                    onDownvote={this.downvote}
+                  />
+
+                  <CommentAdder onSubmit={this.handleCommentAdd} />
+
+                  <CommentToggler>
+                    <CommentsList
+                      article_id={article_id}
+                      username={this.props.username}
+                      onComment={this.onCommentCountChange}
+                    />
+                  </CommentToggler>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

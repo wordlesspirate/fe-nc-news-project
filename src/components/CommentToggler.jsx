@@ -13,8 +13,8 @@ class CommentToggler extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick}>
+      <div class="control">
+        <button class="button is-light" onClick={this.handleClick}>
           {this.state.isVisible ? "Hide Comments" : "Show Comments"}
         </button>
         {this.state.isVisible && this.props.children}

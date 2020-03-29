@@ -1,16 +1,16 @@
-const axios = require("axios");
+import axios from "axios";
 
 const httpClient = axios.create({
   baseURL: "https://be-nc-news-project.herokuapp.com/api"
 });
 
-const fetchTopics = () => {
+export const fetchTopics = () => {
   return httpClient.get("/topics").then(({ data: { topics } }) => {
     return topics;
   });
 };
 
-const fetchArticles = (slug, query) => {
+export const fetchArticles = (slug, query) => {
   return httpClient
     .get("/articles", {
       params: { topic: slug, ...query }
@@ -20,7 +20,7 @@ const fetchArticles = (slug, query) => {
     });
 };
 
-const fetchArticleById = article_id => {
+export const fetchArticleById = article_id => {
   return httpClient
     .get(`/articles/${article_id}`)
     .then(({ data: { article } }) => {
@@ -28,7 +28,7 @@ const fetchArticleById = article_id => {
     });
 };
 
-const fetchArticleComments = article_id => {
+export const fetchArticleComments = article_id => {
   return httpClient
     .get(`/articles/${article_id}/comments`)
     .then(({ data: { comments } }) => {
@@ -36,7 +36,7 @@ const fetchArticleComments = article_id => {
     });
 };
 
-const patchArticleVotes = (article_id, vote) => {
+export const patchArticleVotes = (article_id, vote) => {
   return httpClient
     .patch(`/articles/${article_id}`, { inc_votes: vote })
     .then(({ data: { article } }) => {
@@ -44,7 +44,7 @@ const patchArticleVotes = (article_id, vote) => {
     });
 };
 
-const patchCommentVotes = (comment_id, vote) => {
+export const patchCommentVotes = (comment_id, vote) => {
   return httpClient
     .patch(`/comments/${comment_id}`, { inc_votes: vote })
     .then(({ data: { comment } }) => {
@@ -52,7 +52,7 @@ const patchCommentVotes = (comment_id, vote) => {
     });
 };
 
-const postArticleComment = (article_id, username, comment) => {
+export const postArticleComment = (article_id, username, comment) => {
   return httpClient
     .post(`/articles/${article_id}/comments`, {
       username: username,
@@ -63,17 +63,6 @@ const postArticleComment = (article_id, username, comment) => {
     });
 };
 
-const deleteComment = comment_id => {
+export const deleteComment = comment_id => {
   return httpClient.delete(`/comments/${comment_id}`);
-};
-
-module.exports = {
-  fetchTopics,
-  fetchArticles,
-  fetchArticleById,
-  fetchArticleComments,
-  patchArticleVotes,
-  patchCommentVotes,
-  postArticleComment,
-  deleteComment
 };

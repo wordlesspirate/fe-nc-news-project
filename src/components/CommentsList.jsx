@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import * as api from "../utils/api";
+import * as api from "../utils/api.js";
 import Loading from "./Loading";
 import CommentCard from "./CommentCard";
-import CommentAdder from "./CommentAdder";
 
 class CommentsList extends Component {
   state = {
@@ -53,9 +52,8 @@ class CommentsList extends Component {
   render() {
     if (this.state.isLoading) return <Loading />;
     return (
-      <main>
+      <div>
         <h2>Comments</h2>
-        <CommentAdder onSubmit={this.handleCommentAdd} />
 
         {this.state.comments.map(({ comment_id, ...other }) => {
           return (
@@ -68,7 +66,7 @@ class CommentsList extends Component {
             />
           );
         })}
-      </main>
+      </div>
     );
   }
 }

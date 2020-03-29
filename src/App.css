@@ -1,42 +1,41 @@
-.App {
+/* .App {
   text-align: center;
   display: grid;
-  grid-template-areas: "header header" "nav nav" "main main";
-  grid-template-columns: 100px auto;
-  grid-template-rows: 100px auto;
-  padding: 20px 20px 20px 20px;
-  grid-gap: 20px 20px;
+  grid-template-areas: ". header ." ". navbar ." ". main .";
+  grid-template-columns: 100px auto 100px;
+  align-items: center;
+  grid-row-gap: 50px;
+  padding: 50px;
+  background-color: grey;
 }
 
 .header {
   grid-area: header;
-  border: 1px solid grey;
-  grid-column-gap: 50px;
+  border: 1px solid honeydew;
 }
 
 .logo-container {
-  border: 1px solid grey;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  transition: transform 0.25s ease-out;
+  border: 2px solid lightcoral;
 }
 
 .logo-container:hover {
-  transform: scale(1.015);
+  transform: scale(1.25);
 }
 
-.nav {
-  grid-area: nav;
+.logged-user-container {
+  border: 2px solid lightsalmon;
+}
+
+.navbar {
+  grid-area: navbar;
   display: flex;
   flex-direction: row;
-  border: 1px solid grey;
+  border: 2px solid black;
   grid-column-gap: 50px;
   text-align: left;
 }
 
-.nav-elements {
+.navbar-elements {
   border: 1px solid grey;
   margin-top: 10px;
   margin-left: 10px;
@@ -90,10 +89,4 @@
 
 a {
   text-decoration: none;
-}
-
-@media only screen and (max-width: 768px) {
-  [class*="col-"] {
-    width: 100%;
-  }
-}
+} */

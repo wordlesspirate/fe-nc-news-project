@@ -16,19 +16,23 @@ class CommentAdder extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="field">
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Comment:
+          <label className="label">Comment</label>
+          <div class="control">
             <input
+              className="input"
               type="text"
+              placeholder="a penny for your thoughts?"
               required
               id="body"
               value={this.state.comment}
               onChange={this.handleChange}
             />
-          </label>
-          <button>Submit Comment</button>
+          </div>
+          <div class="control">
+            <button class="button is-info">Submit Comment</button>
+          </div>
         </form>
       </div>
     );

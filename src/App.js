@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header username={this.state.username} />
-        <NavBar />
+        <NavBar className="navbar" />
         <Router className="main">
           <ArticlesList path="/" />
           <ArticlesList path="/topics/:slug" />

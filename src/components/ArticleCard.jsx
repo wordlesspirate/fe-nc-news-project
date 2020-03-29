@@ -10,15 +10,18 @@ const ArticleCard = ({
   votes
 }) => {
   return (
-    <article className="card-container">
-      <p className="card-content">
-        {" "}
-        <Link to={`/articles/${article_id}`}>{title}</Link>
-      </p>
-      <p className="card-content">
-        Topic: {topic} / Created at: {created_at} / Comments: {comment_count} /
-        Votes: {votes}
-      </p>
+    <article>
+      <div className="media">
+        <div className="media-content">
+          <p className="title article-title">
+            <Link to={`/articles/${article_id}`}>{title}</Link>
+          </p>
+          <p className="card-content">
+            Topic: {topic} / Created at: {created_at} / Comments:{" "}
+            {comment_count} / Votes: {votes}
+          </p>
+        </div>
+      </div>
     </article>
   );
 };
