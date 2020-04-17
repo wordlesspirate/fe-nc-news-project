@@ -4,11 +4,11 @@ import * as api from "../utils/api.js";
 
 class NavBar extends Component {
   state = {
-    topics: []
+    topics: [],
   };
 
   componentDidMount() {
-    api.fetchTopics().then(topics => {
+    api.fetchTopics().then((topics) => {
       this.setState({ topics });
     });
   }
@@ -20,11 +20,9 @@ class NavBar extends Component {
           <div className="navbar-start">
             {this.state.topics.map(({ slug }) => {
               return (
-                <div className="navbar-item">
-                  <Link to={`/topics/${slug}`} key={slug}>
-                    {slug}
-                  </Link>
-                </div>
+                <Link to={`/topics/${slug}`} key={slug} className="navbar-item">
+                  {slug}
+                </Link>
               );
             })}
           </div>

@@ -19,9 +19,9 @@ class CommentAdder extends React.Component {
       <div className="field">
         <form onSubmit={this.handleSubmit}>
           <label className="label">Comment</label>
-          <div class="control">
-            <input
-              className="input"
+          <div className="control">
+            <textarea
+              className="textarea"
               type="text"
               placeholder="a penny for your thoughts?"
               required
@@ -30,8 +30,8 @@ class CommentAdder extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div class="control">
-            <button class="button is-info">Submit Comment</button>
+          <div className="control">
+            <button className="button is-info">Submit Comment</button>
           </div>
         </form>
       </div>

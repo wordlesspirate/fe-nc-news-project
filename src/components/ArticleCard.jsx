@@ -7,22 +7,28 @@ const ArticleCard = ({
   topic,
   created_at,
   comment_count,
-  votes
+  votes,
 }) => {
   return (
-    <article>
-      <div className="media">
-        <div className="media-content">
-          <p className="title article-title">
-            <Link to={`/articles/${article_id}`}>{title}</Link>
-          </p>
-          <p className="card-content">
-            Topic: {topic} / Created at: {created_at} / Comments:{" "}
-            {comment_count} / Votes: {votes}
-          </p>
-        </div>
+    <>
+      <div class="box">
+        <article class="media">
+          <div class="media-left"></div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <Link to={`/articles/${article_id}`}>{title}</Link>
+              </p>
+              <p>
+                Topic: {topic} / Created at:
+                {created_at}/ Comments:
+                {comment_count} / Votes: {votes}
+              </p>
+            </div>
+          </div>
+        </article>
       </div>
-    </article>
+    </>
   );
 };
 

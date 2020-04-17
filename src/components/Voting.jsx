@@ -28,20 +28,24 @@ class Voting extends Component {
     const { enableDownvote, enableUpvote } = this.state;
     return (
       <>
-        <p class="buttons">
-          <button class="button" disabled={!enableUpvote} onClick={this.upvote}>
-            <span class="icon is-small">
-              <i class="fas fa-hand-spock"></i>
+        <p className="buttons">
+          <button
+            className="button"
+            disabled={!enableUpvote}
+            onClick={this.upvote}
+          >
+            <span className="icon is-small">
+              <i className="fas fa-hand-spock"></i>
             </span>
           </button>
-          <p>{this.props.count}</p>
+          {this.props.count}
           <button
-            class="button"
+            className="button"
             disabled={!enableDownvote}
             onClick={this.downvote}
           >
-            <span class="icon is-small">
-              <i class="fas fa-angry"></i>
+            <span className="icon is-small">
+              <i className="fas fa-angry"></i>
             </span>
           </button>
         </p>
